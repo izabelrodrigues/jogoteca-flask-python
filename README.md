@@ -34,7 +34,8 @@ Flask version: 1.0.2
 
     flask run --port=5555
 
-####################
+############################################################
+
  * Serving Flask app "jogoteca.py" (lazy loading)
  * Environment: development
  * Debug mode: on
@@ -42,4 +43,5 @@ Flask version: 1.0.2
  * Debugger is active!
  * Debugger PIN: 324-329-849
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
- ####################
+ 
+ ############################################################
