@@ -17,7 +17,7 @@ def index():
 
 @app.route("/new-game")
 def novo():
-    return render_template('games/novo.html', title='Novo Jogo')
+    return render_template('games/novo.html', title='Cadastrar Jogo')
 
 @app.route('/add-game', methods=['POST',])
 def create():
@@ -28,3 +28,16 @@ def create():
     list.append(game)
 
     return redirect('/')
+
+## Autentication Routes
+
+@app.route('/autenticar', methods=['POST',])
+def autenticar():
+    if 'mestra' == request.form['senha']:
+        return redirect('/')
+    else :
+        return redirect ('/login')
+
+@app.route('/login')
+def login():
+    return render_template('login.html', title='Login')
