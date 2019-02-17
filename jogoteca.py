@@ -15,4 +15,4 @@ def getGames():
 @app.route("/")
 def lista():
     lista = getGames()
-    return render_template('lista.html', title='Jogos', games=lista)
+    return render_template('lista.html', title='  Jogos  ', games=lista)
