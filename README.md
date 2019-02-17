@@ -6,8 +6,13 @@ Flask version: 1.0.2
 
 # How to test the aplication 
 
-* Install the Flask :
+* Install the Python3: https://www.python.org/downloads/release/python-372/
+
+* Install the Flask:
     pip3 install flask==1.0.2
+
+* Install the Bootstrap:
+    pip3 install flask-bootstrap
 
 * Config the environments variables:
 
