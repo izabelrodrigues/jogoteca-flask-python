@@ -23,7 +23,7 @@ Flask version: 1.0.2
 
     For Windows PowerShell, use $env: instead of export:
 
-        $env:FLASK_APP = "jogoteca.py flask"
+        $env:FLASK_APP = "jogoteca.py"
         $env:FLASK_ENV = "development"
 
 * Run the application:
