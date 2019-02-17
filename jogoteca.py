@@ -1,4 +1,4 @@
-from flask import Flask,render_template, request
+from flask import Flask,render_template, request, redirect
 from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
@@ -9,16 +9,13 @@ class Game:
         self.name = name
         self.company = company
 
-def getGames():
-    game1 = Game('March of Empires', 'Gameloft')
-    game2 = Game('Canddy Crush', 'King')
-    list = [game1, game2]
-    return list
+game1 = Game('March of Empires', 'Gameloft')
+game2 = Game('Canddy Crush', 'King')
+list = [game1, game2]
 
 @app.route("/")
 def index():
-    lista = getGames()
-    return render_template('lista.html', title='  Jogos  ', games=lista)
+    return render_template('lista.html', title='  Jogos  ', games=list)
 
 @app.route("/new-game")
 def novo():
@@ -26,11 +23,10 @@ def novo():
 
 @app.route('/add-game', methods=['POST',])
 def create():
-    lista = getGames()
     name = request.form['nome']
     company = request.form['empresa']
     
     game = Game(name,company)
-    lista.append(game)
+    list.append(game)
 
-    return render_template('lista.html', title='  Jogos  ', games=lista)
+    return redirect('/')
