@@ -1,6 +1,6 @@
 # jogoteca-flask-python
 
-Study project using the flask python microframework
+Study design using the python flask microframework
 
 Flask version: 1.0.2
 
