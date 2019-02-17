@@ -13,17 +13,17 @@ Flask version: 1.0.2
 
     For Linux and Mac:
 
-        export FLASK_APP=flask
+        export FLASK_APP=jogoteca.py flask
         export FLASK_ENV=development
     
     For Windows cmd, use set instead of export:
 
-        set FLASK_APP=flask
+        set FLASK_APP=jogoteca.py flask
         set FLASK_ENV=development
 
     For Windows PowerShell, use $env: instead of export:
 
-        $env:FLASK_APP = "flask"
+        $env:FLASK_APP = "jogoteca.py flask"
         $env:FLASK_ENV = "development"
 
 * Run the application:
