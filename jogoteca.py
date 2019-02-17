@@ -1,8 +1,6 @@
 from flask import Flask,render_template, request, redirect
-from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
-Bootstrap(app)
 
 class Game:
     def __init__(self, name, company):
@@ -15,11 +13,11 @@ list = [game1, game2]
 
 @app.route("/")
 def index():
-    return render_template('lista.html', title='  Jogos  ', games=list)
+    return render_template('games/lista.html', title='  Jogos  ', games=list)
 
 @app.route("/new-game")
 def novo():
-    return render_template('novo.html', title='Novo Jogo')
+    return render_template('games/novo.html', title='Novo Jogo')
 
 @app.route('/add-game', methods=['POST',])
 def create():

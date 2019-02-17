@@ -11,9 +11,6 @@ Flask version: 1.0.2
 * Install the Flask:
     pip3 install flask==1.0.2
 
-* Install the Bootstrap:
-    pip3 install flask-bootstrap
-
 * Config the environments variables:
 
     For Linux and Mac:
