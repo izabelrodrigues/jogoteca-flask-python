@@ -50,5 +50,5 @@ Flask version: 1.0.2
 
 # TODO
 
-* Authentication 
+* Authentication (protect routes)
 * Persist data in a database
