@@ -47,3 +47,8 @@ Flask version: 1.0.2
  * Running on http://127.0.0.1:5555/ (Press CTRL+C to quit)
  
  ############################################################
+
+# TODO
+
+* Authentication 
+* Persist data in a database
