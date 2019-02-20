@@ -1,6 +1,6 @@
 {% extends "layout_base.html" %}
 {% block content %}
-<form method='post' action='/add-game'>
+<form method='post' action="{{ url_for('create') }}">
     <fieldset>
         <div class="form-group">
             <label for="nome">Nome</label>
