@@ -1,16 +1,20 @@
 from flask import Flask,render_template, request, redirect, session, flash, url_for
+from model.domains import Game, Usuario
 
 app = Flask(__name__)
 app.secret_key = 'alura'
 
-class Game:
-    def __init__(self, name, company):
-        self.name = name
-        self.company = company
-
 game1 = Game('March of Empires', 'Gameloft')
 game2 = Game('Canddy Crush', 'King')
 list = [game1, game2]
+
+usuario1 = Usuario('luan', 'Luan Marques', '1234')
+usuario2 = Usuario('nico', 'Nico Steppat', '7a1')
+usuario3 = Usuario('flavio', 'Flávio', 'javascript')
+
+usuarios = { usuario1.id: usuario1, 
+             usuario2.id: usuario2, 
+             usuario3.id: usuario3 }
 
 @app.route("/")
 def index():
@@ -36,12 +40,14 @@ def create():
 
 @app.route('/autenticar', methods=['POST',])
 def autenticar():
-    if 'mestra' == request.form['senha']:
-        session ['usuario_logado'] = request.form['usuario']
-        flash(request.form['usuario'] + ' logou com sucesso!')
-        proxima_pagina =  request.form['proxima']
-        return redirect(proxima_pagina)
-    else :
+    if request.form['usuario'] in usuarios:
+        usuario = usuarios[request.form['usuario']]
+        if usuario.senha == request.form['senha']:
+            session['usuario_logado'] = usuario.id
+            flash(usuario.nome + ' logou com sucesso!')
+            proxima_pagina = request.form['proxima']
+            return redirect(proxima_pagina)
+    else:
         flash('Não logado, tente de novo!')
         return redirect(url_for('login'))
 
