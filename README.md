@@ -48,7 +48,6 @@ Flask version: 1.0.2
  
  ############################################################
 
-# TODO
+# TODO - NEXT STEPS
 
-* Authentication (protect routes)
 * Persist data in a database
