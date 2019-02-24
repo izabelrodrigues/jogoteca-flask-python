@@ -4,17 +4,17 @@ from model.domains import Game, Usuario
 app = Flask(__name__)
 app.secret_key = 'alura'
 
-game1 = Game('March of Empires', 'Gameloft')
-game2 = Game('Canddy Crush', 'King')
+game1 = Game('God of War 4', 'Ação', 'PS4')
+game2 = Game('Super Mario RPG', 'RPG', 'SNES')
 list = [game1, game2]
 
 usuario1 = Usuario('luan', 'Luan Marques', '1234')
 usuario2 = Usuario('nico', 'Nico Steppat', '7a1')
 usuario3 = Usuario('flavio', 'Flávio', 'javascript')
 
-usuarios = { usuario1.id: usuario1, 
-             usuario2.id: usuario2, 
-             usuario3.id: usuario3 }
+usuarios = { usuario1.login: usuario1, 
+             usuario2.login: usuario2, 
+             usuario3.login: usuario3 }
 
 @app.route("/")
 def index():
