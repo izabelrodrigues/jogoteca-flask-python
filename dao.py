@@ -1,4 +1,4 @@
-from model.domains import Game, Usuario
+from domains import Game, Usuario
 
 SQL_DELETA_JOGO = 'delete from jogo where id = %s'
 SQL_JOGO_POR_ID = 'SELECT id, nome, categoria, console from jogo where id = %s'

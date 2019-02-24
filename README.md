@@ -8,8 +8,9 @@ Flask version: 1.0.2
 
 * Install the Python3: https://www.python.org/downloads/release/python-372/
 
-* Install the Flask:
+* Install the Flask and MySqldb:
     pip3 install flask==1.0.2
+    pip3 install flask_mysqldb
 
 * Config the environments variables:
 
@@ -50,4 +51,4 @@ Flask version: 1.0.2
 
 # TODO - NEXT STEPS
 
-* Persist data in a database
+

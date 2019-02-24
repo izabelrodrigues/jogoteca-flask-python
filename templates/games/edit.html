@@ -1,0 +1,20 @@
+{% extends "layout_base.html" %}
+{% block content %}
+<form method='post' action="{{ url_for('update', id=game.id) }}">
+    <fieldset>
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" class="form-control" value="{{game.nome}}">
+        </div>
+        <div class="form-group">
+            <label for="categoria">Categoria</label>
+            <input type="text" id="categoria" name="categoria" class="form-control" value="{{game.categoria}}">
+        </div>
+        <div class="form-group">
+            <label for="console">Console</label>
+            <input type="text" id="console" name="console" class="form-control" value="{{game.console}}">
+        </div>
+        <button type="submit" class="btn btn-success btn-salvar">Salvar</button>
+    </fieldset>
+</form>
+{% endblock %}
