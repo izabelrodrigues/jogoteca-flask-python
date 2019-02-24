@@ -4,14 +4,16 @@
     <thead class="thead-default">
         <tr>
             <th>Nome</th>
-            <th>Empresa</th>
+            <th>Categoria</th>
+            <th>Console</th>
         </tr>
     </thead>
     <tbody>
         {% for game in games %}
         <tr>
-            <td>{{game.name}}</td>
-            <td>{{game.company}}</td>
+            <td>{{game.nome}}</td>
+            <td>{{game.categoria}}</td>
+            <td>{{game.console}}</td>
         </tr>
         {% endfor %}
     </tbody>
