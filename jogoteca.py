@@ -1,23 +1,17 @@
 from flask import Flask,render_template, request, redirect, session, flash, url_for
 from model.domains import Game, Usuario
+from flask_mysqldb import MySQLdb
+from dao import JogoDao, UsuarioDao
 
 app = Flask(__name__)
 app.secret_key = 'alura'
-
-game1 = Game('God of War 4', 'Ação', 'PS4')
-game2 = Game('Super Mario RPG', 'RPG', 'SNES')
-list = [game1, game2]
-
-usuario1 = Usuario('luan', 'Luan Marques', '1234')
-usuario2 = Usuario('nico', 'Nico Steppat', '7a1')
-usuario3 = Usuario('flavio', 'Flávio', 'javascript')
-
-usuarios = { usuario1.login: usuario1, 
-             usuario2.login: usuario2, 
-             usuario3.login: usuario3 }
+db = MySQLdb.connect(user='root', passwd='sua_senha', host='127.0.0.1', port=3306, database='jogoteca')
+jogo_dao = JogoDao(db)
+usuario_dao = UsuarioDao(db)
 
 @app.route("/")
 def index():
+    list = jogo_dao.listar()
     return render_template('games/lista.html', title='  Jogos  ', games=list)
 
 @app.route("/new-game")
@@ -28,11 +22,12 @@ def novo():
 
 @app.route('/add-game', methods=['POST',])
 def create():
-    name = request.form['nome']
-    company = request.form['empresa']
+    nome = request.form['nome']
+    categoria = request.form['categoria']
+    console = request.form['console']
     
-    game = Game(name,company)
-    list.append(game)
+    game = Game(nome,categoria,console)
+    jogo_dao.salvar(game)
 
     return redirect(url_for('index'))
 
@@ -40,10 +35,10 @@ def create():
 
 @app.route('/autenticar', methods=['POST',])
 def autenticar():
-    if request.form['usuario'] in usuarios:
-        usuario = usuarios[request.form['usuario']]
+    usuario = usuario_dao.buscar_por_id(request.form['usuario'])
+    if usuario:
         if usuario.senha == request.form['senha']:
-            session['usuario_logado'] = usuario.id
+            session['usuario_logado'] = usuario.login
             flash(usuario.nome + ' logou com sucesso!')
             proxima_pagina = request.form['proxima']
             return redirect(proxima_pagina)
