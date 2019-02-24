@@ -53,6 +53,7 @@ def update(id):
 @app.route("/delete/<int:id>")
 def delete(id):
     jogo_dao.deletar(id)
+    flash('Jogo removido com sucesso')
     return redirect(url_for('index'))
 
 ## Autentication Routes
