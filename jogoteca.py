@@ -1,10 +1,13 @@
-from flask import Flask,render_template, request, redirect, session, flash, url_for
+from flask import Flask,render_template, request, redirect, session, flash, url_for,send_from_directory
 from domains import Game, Usuario
 from flask_mysqldb import MySQLdb
 from dao import JogoDao, UsuarioDao
+import os, sys
 
 app = Flask(__name__)
 app.secret_key = 'alura'
+app.config['UPLOAD_PATH'] = os.path.dirname(os.path.abspath(__file__)) + '/uploads'
+
 db = MySQLdb.connect(user='root', passwd='', host='127.0.0.1', port=3306, database='jogoteca')
 jogo_dao = JogoDao(db)
 usuario_dao = UsuarioDao(db)
@@ -31,6 +34,10 @@ def create():
     game = Game(nome,categoria,console)
     jogo_dao.salvar(game)
 
+    arquivo = request.files['arquivo']
+    upload_path = app.config['UPLOAD_PATH']
+    arquivo.save(f'{upload_path}/capa{game.id}.jpg')
+
     return redirect(url_for('index'))
 
 @app.route("/edit/<int:id>")
@@ -38,7 +45,7 @@ def edit(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('edit', id=id)))
     jogo = jogo_dao.busca_por_id(id)
-    return render_template('games/edit.html', title='Editar Jogo', game = jogo)
+    return render_template('games/edit.html', title='Editar Jogo', game = jogo, capa_jogo=f'capa{id}.jpg')
 
 @app.route('/update/<int:id>', methods=['POST',])
 def update(id):
@@ -81,3 +88,8 @@ def logout():
     session['usuario_logado'] = None
     flash('Nenhum usuário logado!')
     return redirect(url_for('index'))
+
+# Rota Imagem
+@app.route('/uploads/<filename>')
+def imagem(filename):
+    return send_from_directory('uploads',filename)
